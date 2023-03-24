@@ -87,15 +87,15 @@ dap.set_log_level('INFO') -- Helps when configuring DAP, see logs with :DapShowL
 --       },
   --     }
 -- }
-require('dap.ext.vscode').load_launchjs("/home/schouhy/.config/nvim/test.json")
-
-dap.adapters.rust = {
-  type = "server",
-  host = "127.0.0.1",
-  port = "${port}",
-  executable ={
-    command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
-    args = { "--port", "${port}" }
-  }
-}
+-- require('dap.ext.vscode').load_launchjs("/home/schouhy/.config/nvim/test.json")
+--
+-- dap.adapters.rust = {
+--   type = "server",
+--   host = "127.0.0.1",
+--   port = "${port}",
+--   executable ={
+--     command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
+--     args = { "--port", "${port}" }
+--   }
+-- }
 
