@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "rust",
+            "request": "launch",
+            "name": "Debug config from json",
+            "program": "/home/schouhy/Documents/lambda/lambdaworks/target/debug/deps/lambdaworks_plonk-${input:id}"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "id",
+            "type": "promptString",
+            "default": ""
+        }
+    ]
+}

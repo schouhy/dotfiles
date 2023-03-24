@@ -73,3 +73,29 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
+
+
+dap.set_log_level('INFO') -- Helps when configuring DAP, see logs with :DapShowLog
+
+-- dap.configurations = {
+--     rust = {
+--       {
+--         type = "rust", -- Which adapter to use
+--         request = "launch", -- Whether to "launch" or "attach" to program
+--         name = "Debug", -- Human readable name
+--         program = "/home/schouhy/Documents/lambda/lambdaworks/target/debug/deps/lambdaworks_plonk-9148f4c90d94339a", -- The buffer you are focused on when running nvim-dap
+--       },
+  --     }
+-- }
+require('dap.ext.vscode').load_launchjs("/home/schouhy/.config/nvim/test.json")
+
+dap.adapters.rust = {
+  type = "server",
+  host = "127.0.0.1",
+  port = "${port}",
+  executable ={
+    command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
+    args = { "--port", "${port}" }
+  }
+}
+
