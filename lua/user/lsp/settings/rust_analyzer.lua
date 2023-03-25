@@ -10,10 +10,11 @@
 --     end,
 --   },
 -- })
+--
+local M = {}
 
-local opts = {
+M.opts = {
   tools = { -- rust-tools options
-
     -- how to execute terminal commands
     -- options right now: termopen / quickfix
     executor = require("rust-tools.executors").termopen,
@@ -191,5 +192,10 @@ local opts = {
   },
 }
 
-require('rust-tools').setup(opts)
+function M.setup(options)
+	M.opts.server = vim.tbl_deep_extend("force", M.opts.server, options)
+  require('rust-tools').setup(M.opts)
+end
+
+return M
 

@@ -1,4 +1,6 @@
-return {
+local M = {}
+
+M.opts = {
   settings = {
     Lua = {
       diagnostics = {
@@ -16,3 +18,10 @@ return {
     },
   },
 }
+
+function M.setup(options)
+	local opts = vim.tbl_deep_extend("force", M.opts, options)
+  require("lspconfig")["sumneko_lua"].setup(opts)
+end
+
+return M
