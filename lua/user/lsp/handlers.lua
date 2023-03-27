@@ -83,6 +83,7 @@ M.on_attach = function(client, bufnr)
 
   if client.name == "rust_analyzer" then
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ha", "<cmd>RustHoverActions<CR><cmd>RustHoverActions<CR>", { noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>RustCodeAction<CR>", { noremap = true, silent = true})
   end
 
 	local status_ok, illuminate = pcall(require, "illuminate")
