@@ -114,6 +114,9 @@ return packer.startup(function(use)
   -- Multi Cursor
   use { "mg979/vim-visual-multi"}
 
+  -- Autosave
+  use { "Pocco81/auto-save.nvim" }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
