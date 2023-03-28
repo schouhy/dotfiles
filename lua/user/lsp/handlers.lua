@@ -68,6 +68,13 @@ local function lsp_keymaps(bufnr)
 	keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 	keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+-- Lua
+vim.keymap.set("n", "<leader>tx", "<cmd>TroubleToggle<cr>", {silent = true, noremap = true})
+vim.keymap.set("n", "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics<cr>", {silent = true, noremap = true})
+vim.keymap.set("n", "<leader>td", "<cmd>TroubleToggle document_diagnostics<cr>", {silent = true, noremap = true})
+vim.keymap.set("n", "<leader>tl", "<cmd>TroubleToggle loclist<cr>", {silent = true, noremap = true})
+vim.keymap.set("n", "<leader>tq", "<cmd>TroubleToggle quickfix<cr>", {silent = true, noremap = true})
+vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", {silent = true, noremap = true})
 end
 
 M.on_attach = function(client, bufnr)
@@ -83,7 +90,6 @@ M.on_attach = function(client, bufnr)
 
   if client.name == "rust_analyzer" then
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ha", "<cmd>RustHoverActions<CR><cmd>RustHoverActions<CR>", { noremap = true, silent = true})
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>RustCodeAction<CR>", { noremap = true, silent = true})
   end
 
 	local status_ok, illuminate = pcall(require, "illuminate")

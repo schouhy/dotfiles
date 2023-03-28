@@ -1,4 +1,5 @@
 require "user.impatient"
+require "user.trouble"
 require "user.options"
 require "user.keymaps"
 require "user.plugins"
@@ -20,3 +21,5 @@ require "user.indentline"
 require "user.alpha"
 require "user.lsp"
 require "user.dap"
+require "user.neoscroll"
+
