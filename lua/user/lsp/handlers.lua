@@ -12,10 +12,10 @@ M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
 M.setup = function()
 	local signs = {
 
-		{ name = "DiagnosticSignError", text = " ▬" },
-		{ name = "DiagnosticSignWarn", text = " ▬" },
-		{ name = "DiagnosticSignHint", text = " ▬" },
-		{ name = "DiagnosticSignInfo", text = " ▬" },
+		{ name = "DiagnosticSignError", text = "▬" },
+		{ name = "DiagnosticSignWarn", text = "▬" },
+		{ name = "DiagnosticSignHint", text = "▬" },
+		{ name = "DiagnosticSignInfo", text = "▬" },
 	}
 
 	for _, sign in ipairs(signs) do
@@ -63,19 +63,25 @@ local function lsp_keymaps(bufnr)
 	keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", opts)
 	keymap(bufnr, "n", "<leader>lI", "<cmd>Mason<cr>", opts)
 	keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+  vim.cmd[[ command! Action lua vim.lsp.buf.code_action()<CR>]]
 	keymap(bufnr, "n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
+	vim.cmd[[ command! Nextproblem lua vim.diagnostic.goto_next({buffer=0})<cr>]]
 	keymap(bufnr, "n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
+	vim.cmd[[ command! Prevproblem lua vim.diagnostic.goto_prev({buffer=0})<cr>]]
 	keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+	vim.cmd[[ command! Rename lua vim.lsp.buf.rename()<cr> ]]
 	keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+	vim.cmd[[ command! Signaturehelp lua vim.lsp.buf.signature_help()<CR>]]
 	keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
--- Lua
-vim.keymap.set("n", "<leader>tx", "<cmd>TroubleToggle<cr>", {silent = true, noremap = true})
-vim.keymap.set("n", "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics<cr>", {silent = true, noremap = true})
-vim.keymap.set("n", "<leader>td", "<cmd>TroubleToggle document_diagnostics<cr>", {silent = true, noremap = true})
-vim.keymap.set("n", "<leader>tl", "<cmd>TroubleToggle loclist<cr>", {silent = true, noremap = true})
-vim.keymap.set("n", "<leader>tq", "<cmd>TroubleToggle quickfix<cr>", {silent = true, noremap = true})
-vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", {silent = true, noremap = true})
+  vim.keymap.set("n", "<leader>tx", "<cmd>TroubleToggle<cr>", {silent = true, noremap = true})
+  vim.keymap.set("n", "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics<cr>", {silent = true, noremap = true})
+  vim.cmd('command! Diagnostic TroubleToggle workspace_diagnostics')
+  vim.keymap.set("n", "<leader>td", "<cmd>TroubleToggle document_diagnostics", {silent = true, noremap = true})
+  vim.keymap.set("n", "<leader>tl", "<cmd>TroubleToggle loclist<cr>", {silent = true, noremap = true})
+  vim.keymap.set("n", "<leader>tq", "<cmd>TroubleToggle quickfix<cr>", {silent = true, noremap = true})
+  vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", {silent = true, noremap = true})
 end
+
 
 M.on_attach = function(client, bufnr)
 	if client.name == "tsserver" then
@@ -89,7 +95,12 @@ M.on_attach = function(client, bufnr)
 	lsp_keymaps(bufnr)
 
   if client.name == "rust_analyzer" then
+    M.hoverAction = function()
+      vim.api.nvim_command("RustHoverActions")
+      vim.api.nvim_command("RustHoverActions")
+    end
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ha", "<cmd>RustHoverActions<CR><cmd>RustHoverActions<CR>", { noremap = true, silent = true})
+    vim.cmd('command! HoverAction lua require("user.lsp.handlers").hoverAction()')
   end
 
 	local status_ok, illuminate = pcall(require, "illuminate")

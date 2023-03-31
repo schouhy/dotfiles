@@ -119,9 +119,6 @@ return packer.startup(function(use)
   -- Autosave
   use { "Pocco81/auto-save.nvim" }
 
-  -- Smooth Scrolling
-  use { "karb94/neoscroll.nvim"}
-
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
