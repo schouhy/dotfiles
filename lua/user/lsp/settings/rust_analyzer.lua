@@ -163,20 +163,6 @@ M.opts = {
     -- setting it to false may improve startup time
     standalone = true,
   }, -- rust-analyzer options
-
-  -- debugging stuff
-  dap = {
-    adapter = {
-    type = "server",
-    host = "127.0.0.1",
-    port = "${port}",
-    executable ={
-      command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
-      args = { "--port", "${port}" }
-    },
-    name = "codelldb",
-    },
-  },
 }
 
 function M.setup(options)

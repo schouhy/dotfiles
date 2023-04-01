@@ -1,5 +1,4 @@
 require "user.impatient"
-require "user.trouble"
 require "user.options"
 require "user.keymaps"
 require "user.plugins"

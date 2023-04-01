@@ -21,7 +21,7 @@ M.opts = {
 
 function M.setup(options)
 	local opts = vim.tbl_deep_extend("force", M.opts, options)
-  require("lspconfig")["sumneko_lua"].setup(opts)
+  require("lspconfig")["lua_ls"].setup(opts)
 end
 
 return M
