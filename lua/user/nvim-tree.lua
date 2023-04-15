@@ -16,8 +16,10 @@ nvim_tree.setup {
     update_cwd = true,
   },
   renderer = {
+    highlight_git = true,
     root_folder_modifier = ":t",
     icons = {
+      git_placement = "after",
       glyphs = {
         default = "",
         symlink = "",
