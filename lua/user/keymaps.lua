@@ -51,6 +51,11 @@ keymap("v", ">", ">gv", opts)
 
 -- Plugins --
 
+-- ToggleTerm
+keymap("t", "<Esc>", "<C-\\><C-n>", opts)
+
+
+
 -- NvimTree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
