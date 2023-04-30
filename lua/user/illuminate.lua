@@ -12,6 +12,8 @@ vim.api.nvim_set_keymap(
   { noremap = true }
 )
 
+vim.cmd[[highlight IlluminateWord cterm=bold ]]
+
 illuminate.configure {
   providers = {
     "lsp",
