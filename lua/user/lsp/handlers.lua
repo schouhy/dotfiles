@@ -99,7 +99,8 @@ M.on_attach = function(client, bufnr)
       vim.api.nvim_command("RustHoverActions")
       vim.api.nvim_command("RustHoverActions")
     end
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lh", "<cmd>RustHoverActions<CR><cmd>RustHoverActions<CR>", { noremap = true, silent = true})
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lh", "<cmd>RustHoverActions<CR><cmd>RustHoverActions<CR>", { noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lh", "<cmd>lua vim.lsp.codelens.refresh()<cr><cmd>lua vim.lsp.codelens.run()<cr>", { noremap = true, silent = true})
     vim.cmd('command! HoverAction lua require("user.lsp.handlers").hoverAction()')
   end
 
