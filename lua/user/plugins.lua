@@ -100,8 +100,9 @@ return packer.startup(function(use)
 
   -- DAP
   use { "mfussenegger/nvim-dap"}
-  use { "rcarriga/nvim-dap-ui"}
-  use { "ravenxrz/DAPInstall.nvim"}
+  use { "jay-babu/mason-nvim-dap.nvim"}
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
+  -- use { "ravenxrz/DAPInstall.nvim"}
 
 
   -- Surround

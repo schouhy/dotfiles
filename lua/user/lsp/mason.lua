@@ -51,3 +51,6 @@ for _, server_name in pairs(servers) do
     lspconfig[server_name].setup(opts)
 	end
 end
+
+require("mason-nvim-dap").setup()
+

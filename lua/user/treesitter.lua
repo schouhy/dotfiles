@@ -8,6 +8,13 @@ if not status_ok then
   return
 end
 
+local status_ok, commentstring = pcall(require, "ts_context_commentstring")
+if not status_ok then
+  return
+end
+
+commentstring.setup {}
+
 configs.setup {
   ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python", "rust", "vim" }, -- put the language you want in this array
   -- ensure_installed = "all", -- one of "all" or a list of languages
@@ -22,9 +29,4 @@ configs.setup {
     enable = true,
   },
   indent = { enable = true, disable = { "python", "css" } },
-
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  },
 }
